@@ -46,5 +46,5 @@ jobs:
           chmod 600 $PRIVATE_KEY_FILE
           echo "$ANSIBLE_INVENTORY" > $INVENTORY_FILE
           pwd
-          cd
+          ls
           ansible-playbook ansible/deploy_to_DO.yml
