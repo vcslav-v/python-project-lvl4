@@ -1,5 +1,5 @@
 - hosts: servers
-  user: vaclav
+  user: "{{user_name}}"
 
   tasks:
     - name: Pull app container.
