@@ -22,9 +22,7 @@ jobs:
           registry: docker.pkg.github.com
           repository: env.REPOSITORY
           path: app
-          tag_with_sha: true
-          tag_with_ref: true
-      
+
       - name: Set up Python
         uses: actions/setup-python@v2
 
