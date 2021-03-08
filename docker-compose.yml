@@ -1,0 +1,30 @@
+version: "3"
+
+services:    
+    app:
+      build: app/
+      container_name: app
+      command: poetry run gunicorn task_manager.wsgi:application --bind 0.0.0.0:5000 -w 1 
+      environment:
+        - DJANGO_SETTINGS_MODULE=task_manager.settings
+      restart: always
+      networks:
+        intranet:
+          aliases:
+            - app
+
+    nginx:
+      image: nginx:latest
+      container_name: nginx
+      restart: always
+      volumes:
+        - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+      ports:
+        - 8080:8080
+      networks:
+        - intranet
+      depends_on:
+        - app
+
+networks: 
+  intranet:

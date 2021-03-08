@@ -1,0 +1,16 @@
+name: deploy
+
+on:  [push]
+
+env:
+  IMAGE_NAME: hexlet-prj-lvl4
+
+jobs:
+  CD:
+    name: CD
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build app image
+        run: docker build app
