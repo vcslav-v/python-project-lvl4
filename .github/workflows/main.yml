@@ -45,4 +45,5 @@ jobs:
           echo "$SSH_KEY" > $PRIVATE_KEY_FILE
           chmod 600 $PRIVATE_KEY_FILE
           echo "$ANSIBLE_INVENTORY" > $INVENTORY_FILE
+          ls $PRIVATE_KEY_FILE
           ansible-playbook --vault-password-file $VAULT_PASSWORD_FILES -i $INVENTORY_FILE --private-key $PRIVATE_KEY_FILE ansible/deploy_to_DO.yml
