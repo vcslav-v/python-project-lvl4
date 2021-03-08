@@ -1,0 +1,15 @@
+- hosts: servers
+  user: "{{user_name}}"
+
+  tasks:
+    - name: Pull app container.
+      docker_image:
+        name: "{{item}}"
+        repository: docker.pkg.github.com
+        tag: latest
+      loop:
+        - "{{ lookup('env','REPOSITORY') }}"
+
+
+  vars_files:
+    - ansible/vars.yml
