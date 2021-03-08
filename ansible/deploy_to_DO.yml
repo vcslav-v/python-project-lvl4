@@ -12,4 +12,4 @@
 
 
   vars_files:
-    - ansible/vars.yml
+    - vars.yml
