@@ -6,9 +6,9 @@
       docker_image:
         name: "{{item}}"
         repository: docker.pkg.github.com
-        tag: latest
+        version: latest
       loop:
-        - "{{ lookup('env','REPOSITORY') }}:latest"
+        - "{{ lookup('env','REPOSITORY') }}"
 
 
   vars_files:
