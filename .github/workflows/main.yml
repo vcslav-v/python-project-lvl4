@@ -37,14 +37,17 @@ jobs:
           ANSIBLE_INVENTORY: ${{ secrets.ANSIBLE_INVENTORY }}
           SSH_KEY: ${{ secrets.SSH_KEY }}
           SSH_PUB_KEY: ${{ secrets.SSH_PUB_KEY }}
-          PRIVATE_KEY_FILE: ~/.ssh/ans_key
+          ANSIBLE_PRIVATE_KEY_FILE: ansible/.ssh/ans_key
           INVENTORY_FILE: ansible/inventory.ini
-          VAULT_PASSWORD_FILES: ansible/.ansible-vault-password
+          ANSIBLE_VAULT_PASSWORD_FILE: ansible/.ansible-vault-password
+          ANSIBLE_HOST_KEY_CHECKING: 
+
+
         run: |
           echo "$ANSIBLE_VAULT_PASSWORD" > $VAULT_PASSWORD_FILES
-          mkdir ~/.ssh
-          ssh-keyscan -H 164.90.165.17 > ~/.ssh/known_hosts
+          mkdir ansible/.ssh
+          ssh-keyscan -H 164.90.165.17 > ansible/.ssh/known_hosts
           echo "$SSH_KEY" > $PRIVATE_KEY_FILE
           chmod 600 $PRIVATE_KEY_FILE
           echo "$ANSIBLE_INVENTORY" > $INVENTORY_FILE
-          ansible-playbook --vault-password-file $VAULT_PASSWORD_FILES -i $INVENTORY_FILE --key-file $PRIVATE_KEY_FILE ansible/deploy_to_DO.yml
+          ansible-playbook -i $INVENTORY_FILE ansible/deploy_to_DO.yml
