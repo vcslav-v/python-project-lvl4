@@ -6,7 +6,6 @@
       docker_image:
         name: "{{item}}"
         repository: docker.pkg.github.com
-        version: latest
       loop:
         - "{{ lookup('env','REPOSITORY') }}"
 
