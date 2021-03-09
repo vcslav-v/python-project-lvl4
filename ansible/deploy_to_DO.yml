@@ -10,7 +10,7 @@
     - name: Check that the docker-compose.yml exists
       stat:
         path: "{{ work_dir }}/docker-compose.yml"
-        register: stat_result
+      register: stat_result
     
     - name: Stop all services
       docker_compose:
