@@ -2,9 +2,6 @@ name: deploy
 
 on:  [push]
 
-env:
-  REPOSITORY: ${{ github.repository }}/app
-
 jobs:
   CD:
     name: CD
@@ -18,7 +15,7 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ github.token }}
           registry: docker.pkg.github.com
-          repository: env.REPOSITORY
+          repository:   ${{ github.repository }}/app
           path: app
           tag_with_sha: true
           tag_with_ref: true
@@ -41,6 +38,7 @@ jobs:
           ANSIBLE_VAULT_PASSWORD_FILE: ansible/.ansible-vault-password
           ANSIBLE_HOST_KEY_CHECKING: False
 
+          REPOSITORY: ${{ github.repository }}/app
         run: |
           echo "$ANSIBLE_VAULT_PASSWORD" > $ANSIBLE_VAULT_PASSWORD_FILE
           mkdir ansible/.ssh
