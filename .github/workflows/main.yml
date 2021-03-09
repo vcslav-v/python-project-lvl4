@@ -15,10 +15,9 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ github.token }}
           registry: docker.pkg.github.com
-          repository:   ${{ github.repository }}/app
+          repository:   ${{ github.repository }}/app:latest
           path: app
-          tag_with_sha: true
-          tag_with_ref: true
+
 
       - name: Set up Python
         uses: actions/setup-python@v2

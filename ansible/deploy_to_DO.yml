@@ -8,7 +8,7 @@
         repository: docker.pkg.github.com
         tag: latest
       loop:
-        - "{{ lookup('env','REPOSITORY') }}"
+        - "{{ lookup('env','REPOSITORY') }}:latest"
 
 
   vars_files:
