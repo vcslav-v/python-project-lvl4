@@ -9,19 +9,23 @@ jobs:
   CD:
     name: CD
     runs-on: ubuntu-latest
-    env:
-      REPOSITORY: ${{ github.repository }}/latest
     steps:
       - uses: actions/checkout@v2
-      
-      - name: Build app image
-        uses: docker/build-push-action@v1
+
+      - name: Login to github pkg
+        uses: docker/login-action@v1
         with:
+          registry: docker.pkg.github.com
           username: ${{ github.actor }}
           password: ${{ github.token }}
-          registry: docker.pkg.github.com
-          repository: env.REPOSITORY
-          path: app
+      
+      - name: Build app image
+        uses: docker/build-push-action@v2
+        with:
+          context: app
+          file: Dockerfile
+          push: true
+          tags: ${{ github.repository }}:latest
 
       - name: Set up Python
         uses: actions/setup-python@v2
@@ -41,7 +45,6 @@ jobs:
           ANSIBLE_PUBLIC_KEY_FILE: ansible/.ssh/ans_key.pub
           INVENTORY_FILE: ansible/inventory.ini
           ANSIBLE_VAULT_PASSWORD_FILE: ansible/.ansible-vault-password
-          ANSIBLE_HOST_KEY_CHECKING: 
 
 
         run: |
