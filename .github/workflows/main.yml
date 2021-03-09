@@ -3,7 +3,7 @@ name: deploy
 on:  [push]
 
 env:
-  IMAGE_NAME: hexlet-prj-lvl4
+  REPOSITORY: ${{ github.repository }}/app
 
 jobs:
   CD:
@@ -18,7 +18,7 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ github.token }}
           registry: docker.pkg.github.com
-          repository: ${{ github.repository }}/app
+          repository: $REPOSITORY
           path: app
           tag_with_sha: true
           tag_with_ref: true
@@ -36,19 +36,15 @@ jobs:
           ANSIBLE_VAULT_PASSWORD: ${{ secrets.ANSIBLE_VAULT_PASSWORD }}
           ANSIBLE_INVENTORY: ${{ secrets.ANSIBLE_INVENTORY }}
           SSH_KEY: ${{ secrets.SSH_KEY }}
-          SSH_PUB_KEY: ${{ secrets.SSH_PUB_KEY }}
           ANSIBLE_PRIVATE_KEY_FILE: ansible/.ssh/ans_key
-          ANSIBLE_PUBLIC_KEY_FILE: ansible/.ssh/ans_key.pub
           INVENTORY_FILE: ansible/inventory.ini
           ANSIBLE_VAULT_PASSWORD_FILE: ansible/.ansible-vault-password
-
+          ANSIBLE_HOST_KEY_CHECKING: False
 
         run: |
           echo "$ANSIBLE_VAULT_PASSWORD" > $ANSIBLE_VAULT_PASSWORD_FILE
           mkdir ansible/.ssh
-          ssh-keyscan -H 164.90.165.17 > ansible/.ssh/known_hosts
           echo "$SSH_KEY" > $ANSIBLE_PRIVATE_KEY_FILE
-          echo "$SSH_PUB_KEY" > $ANSIBLE_PUBLIC_KEY_FILE
           chmod 600 $ANSIBLE_PRIVATE_KEY_FILE
           echo "$ANSIBLE_INVENTORY" > $INVENTORY_FILE
           ansible-playbook -i $INVENTORY_FILE ansible/deploy_to_DO.yml
