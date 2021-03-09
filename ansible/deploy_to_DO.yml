@@ -2,12 +2,27 @@
   user: "{{user_name}}"
 
   tasks:
-    - name: Pull app container.
-      docker_image:
-        name: "{{item}}"
-        repository: docker.pkg.github.com
-      loop:
-        - "{{ lookup('env','REPOSITORY') }}"
+    - name: ansible create directory example
+      file:
+        path: "{{ work_dir }}"
+        state: directory
+    
+    - name: Check that the docker-compose.yml exists
+      stat:
+        path: "{{ work_dir }}/docker-compose.yml"
+        register: stat_result
+    
+    - name: Stop all services
+      docker_compose:
+        project_src: "{{ work_dir }}"
+        build: no
+        stopped: yes
+      when: stat_result.stat.exists
+
+    - name: Template docker-compose file
+      template:
+        src: docker-compose.yml.j2
+        dest: "{{ work_dir }}/docker-compose.yml"
 
 
   vars_files:

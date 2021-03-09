@@ -3,8 +3,8 @@ name: deploy
 on:  [push]
 
 jobs:
-  CD:
-    name: CD
+  image-build:
+    name: Build app image
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -18,7 +18,15 @@ jobs:
           repository:   ${{ github.repository }}/app
           path: app
           tags: latest
-
+  
+  run-ansible:
+    name: Run ansible
+    runs-on: ubuntu-latest
+    needs: image-build
+    
+    steps:
+      - uses: actions/checkout@v2
+      
       - name: Set up Python
         uses: actions/setup-python@v2
 
