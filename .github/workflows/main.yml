@@ -42,8 +42,8 @@ jobs:
           VAULT_PASSWORD_FILES: ansible/.ansible-vault-password
         run: |
           echo "$ANSIBLE_VAULT_PASSWORD" > $VAULT_PASSWORD_FILES
-          mkdir ~/.ssh
-          echo "$SSH_PUB_KEY" > ~/.ssh/known_hosts
+          mkdir ansible/.ssh
+          ssh-keyscan -H 164.90.165.17 > ansible/.ssh/known_hosts
           echo "$SSH_KEY" > $PRIVATE_KEY_FILE
           chmod 600 $PRIVATE_KEY_FILE
           echo "$ANSIBLE_INVENTORY" > $INVENTORY_FILE
