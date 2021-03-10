@@ -29,7 +29,7 @@ jobs:
           push: true
           context: ./app
           file: ./app/Dockerfile
-          tags: vaclav/app:latest
+          tags: vcslav-v/app:latest
   
   run-ansible:
     name: Run ansible
