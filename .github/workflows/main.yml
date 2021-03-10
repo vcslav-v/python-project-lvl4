@@ -20,14 +20,6 @@ jobs:
           path: app
           tag_with_sha: true
           tag_with_ref: true
-  
-  run-ansible:
-    name: Run ansible
-    runs-on: ubuntu-latest
-    needs: image-build
-    
-    steps:
-      - uses: actions/checkout@v2
       
       - name: Set up Python
         uses: actions/setup-python@v2
