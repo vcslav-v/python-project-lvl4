@@ -29,7 +29,7 @@ jobs:
           push: true
           context: ./app
           file: ./app/Dockerfile
-          tags: app:latest
+          tags: latest
   
   run-ansible:
     name: Run ansible
