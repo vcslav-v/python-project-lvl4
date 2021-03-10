@@ -37,6 +37,11 @@
         proto: tcp
     
     - name: Template nginx config file
+      template:
+        src: default.conf.j2
+        dest: "{{ work_dir }}/nginx/default.conf"
+
+    - name: Start docker-compose
       docker_compose:
         build: yes
         project_src: "{{ work_dir }}/docker-compose.yml"
