@@ -50,6 +50,7 @@
     - name: Start docker-compose
       docker_compose:
         build: yes
+        recreate: always
         project_src: "{{ work_dir }}"
 
   vars_files:
