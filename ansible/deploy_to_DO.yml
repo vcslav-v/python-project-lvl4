@@ -41,6 +41,12 @@
         src: default.conf.j2
         dest: "{{ work_dir }}/nginx/default.conf"
 
+    - name: Login to github packages
+      docker_login:
+        registry: "{{ lookup('env','GH_REGISTRY') }}"
+        username: "{{ lookup('env','GH_USERNAME') }}"
+        password: "{{ lookup('env','GH_USERNAME') }}"
+
     - name: Start docker-compose
       docker_compose:
         build: yes
