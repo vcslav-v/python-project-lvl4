@@ -30,6 +30,7 @@
         state: directory
 
     - name: Add 80 port to firewall
+      become: yes
       ufw:
         rule: allow
         port: 80
