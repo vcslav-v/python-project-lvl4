@@ -28,6 +28,12 @@
       file:
         path: "{{ work_dir }}/nginx"
         state: directory
+
+    - name: Add 80 port to firewall
+      ufw:
+        rule: allow
+        port: 80
+        proto: tcp
     
     - name: Template nginx config file
       docker_compose:
