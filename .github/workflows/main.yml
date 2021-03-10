@@ -32,9 +32,8 @@ jobs:
 
       - name: Install dependencies
         run: |
-          python3 -m pip install --upgrade pip
-          pip3 install ansible
-          pip3 install docker docker-compose
+          python -m pip install --upgrade pip
+          pip install ansible
 
       - name: Set and run ansible
         env:
