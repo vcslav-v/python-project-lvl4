@@ -29,7 +29,7 @@ jobs:
           push: true
           context: ./app
           file: ./app/Dockerfile
-          tags: "${{ github.user_name }}/app:latest"
+          tags: app:latest
   
   run-ansible:
     name: Run ansible
