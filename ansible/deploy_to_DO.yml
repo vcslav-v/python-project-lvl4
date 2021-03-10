@@ -45,7 +45,7 @@
       docker_login:
         registry: "{{ lookup('env','GH_REGISTRY') }}"
         username: "{{ lookup('env','GH_USERNAME') }}"
-        password: "{{ lookup('env','GH_USERNAME') }}"
+        password: "{{ lookup('env','GH_PASS') }}"
 
     - name: Start docker-compose
       docker_compose:
