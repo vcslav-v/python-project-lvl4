@@ -26,7 +26,7 @@ SECRET_KEY = 'he7%^fxo8jrink)f@c#(@8n)60w)&*&xjglfj3ugun=1bx+2lx'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['164.90.165.17']
+ALLOWED_HOSTS = [environ.get('HOST')]
 
 
 # Application definition

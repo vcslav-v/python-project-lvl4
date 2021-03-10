@@ -17,7 +17,8 @@ jobs:
           registry: docker.pkg.github.com
           repository:   ${{ github.repository }}/app
           path: app
-          tags: latest
+          tag_with_sha: true
+          tag_with_ref: true
   
   run-ansible:
     name: Run ansible
