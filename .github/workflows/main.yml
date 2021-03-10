@@ -32,9 +32,9 @@ jobs:
 
       - name: Install dependencies
         run: |
-          python -m pip install --upgrade pip
-          pip install ansible
-          pip install docker docker-compose
+          python3 -m pip install --upgrade pip
+          pip3 install ansible
+          pip3 install docker docker-compose
 
       - name: Set and run ansible
         env:
@@ -53,4 +53,4 @@ jobs:
           echo "$SSH_KEY" > $ANSIBLE_PRIVATE_KEY_FILE
           chmod 600 $ANSIBLE_PRIVATE_KEY_FILE
           echo "$ANSIBLE_INVENTORY" > $INVENTORY_FILE
-          ansible-playbook -i $INVENTORY_FILE ansible/deploy_to_DO.yml
+          python3 ansible-playbook -i $INVENTORY_FILE ansible/deploy_to_DO.yml
