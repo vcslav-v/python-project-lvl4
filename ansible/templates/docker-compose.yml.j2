@@ -7,6 +7,7 @@ services:
       command: poetry run gunicorn {{ app_name }}.wsgi:application --bind 0.0.0.0:5000 -w 1 
       environment:
         - DJANGO_SETTINGS_MODULE={{ app_name }}.settings
+        - HOST={{ HOST }}
       restart: always
       networks:
         intranet:
