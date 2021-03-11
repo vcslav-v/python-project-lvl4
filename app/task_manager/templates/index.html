@@ -1,1 +1,18 @@
-<h1>Hello!</h1>
+  {% extends 'base_layout.html' %}
+  {% load i18n %}
+  {% block title %}{% trans "Task manager" %}{% endblock title %}
+  
+  {% block description %}{% trans "Hexlet project #4" %}{% endblock description %}
+
+  {% block content %}
+  <div class="jumbotron">
+    <div class="container">
+      <h1 class="display-3">{% trans "Task manager" %}</h1>
+      <p>{% trans "Hexlet project #4" %}</p>
+    </div>
+  </div>
+
+    <hr>
+
+  </div>
+{% endblock content %}
