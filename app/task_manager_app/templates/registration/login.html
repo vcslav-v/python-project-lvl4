@@ -1,0 +1,16 @@
+  {% extends 'base_layout.html' %}
+  {% load i18n %}
+  {% load bootstrap4 %}
+  {% block title %}{% trans "Task manager" %}{% endblock title %}
+  
+  {% block description %}{% trans "Hexlet project #4" %}{% endblock description %}
+
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <button type="submit" class="btn btn-primary btn-block">{% trans "Register" %}</button>
+        <input type="hidden" name="next" value="{% url 'main' %}">
+    </form>
+
+{% endblock content %}

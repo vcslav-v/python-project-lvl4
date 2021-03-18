@@ -28,7 +28,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = [environ.get('HOST')]
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -39,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'task_manager_app.apps.TaskManagerAppConfig',
+    'users.apps.UsersConfig',
     'bootstrap4',
 ]
 
